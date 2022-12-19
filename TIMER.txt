@@ -1,0 +1,435 @@
+import '../flutter_flow/flutter_flow_count_controller.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_timer.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+
+class TimerWidget extends StatefulWidget {
+  const TimerWidget({Key? key}) : super(key: key);
+
+  @override
+  _TimerWidgetState createState() => _TimerWidgetState();
+}
+
+class _TimerWidgetState extends State<TimerWidget> {
+  StopWatchTimer? timerController;
+  String? timerValue;
+  int? timerMilliseconds;
+  int? countControllerValue1;
+  int? countControllerValue2;
+  int? countControllerValue3;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timerController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 1,
+              decoration: BoxDecoration(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FlutterFlowTimer(
+                    timerValue: timerValue ??= StopWatchTimer.getDisplayTime(
+                      timerMilliseconds ??= 10000,
+                      hours: true,
+                      minute: true,
+                      second: true,
+                      milliSecond: false,
+                    ),
+                    timer: timerController ??= StopWatchTimer(
+                      mode: StopWatchMode.countDown,
+                      presetMillisecond: timerMilliseconds ??= 10000,
+                      onChange: (value) {
+                        setState(() {
+                          timerMilliseconds = value;
+                          timerValue = StopWatchTimer.getDisplayTime(
+                            value,
+                            hours: true,
+                            minute: true,
+                            second: true,
+                            milliSecond: false,
+                          );
+                        });
+                      },
+                    ),
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Poppins',
+                          color: Color(0xFFEF6910),
+                          fontSize: 45,
+                        ),
+                    onEnded: () {},
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'HOURS',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                    ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            child: Container(
+                              width: 110,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(25),
+                                shape: BoxShape.rectangle,
+                                border: Border.all(
+                                  color: Color(0xFF9E9E9E),
+                                  width: 1,
+                                ),
+                              ),
+                              child: FlutterFlowCountController(
+                                decrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.minus,
+                                  color: enabled
+                                      ? Color(0xDD000000)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                incrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: enabled
+                                      ? Color(0xFFEF6910)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                countBuilder: (count) => Text(
+                                  count.toString(),
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                count: countControllerValue1 ??= 0,
+                                updateCount: (count) => setState(
+                                    () => countControllerValue1 = count),
+                                stepSize: 1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'MINUTES',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                    ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 0),
+                            child: Container(
+                              width: 110,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(25),
+                                shape: BoxShape.rectangle,
+                                border: Border.all(
+                                  color: Color(0xFF9E9E9E),
+                                  width: 1,
+                                ),
+                              ),
+                              child: FlutterFlowCountController(
+                                decrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.minus,
+                                  color: enabled
+                                      ? Color(0xDD000000)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                incrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: enabled
+                                      ? Color(0xFFEF6910)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                countBuilder: (count) => Text(
+                                  count.toString(),
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                count: countControllerValue2 ??= 0,
+                                updateCount: (count) => setState(
+                                    () => countControllerValue2 = count),
+                                stepSize: 1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'SECONDS',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                    ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            child: Container(
+                              width: 110,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(25),
+                                shape: BoxShape.rectangle,
+                                border: Border.all(
+                                  color: Color(0xFF9E9E9E),
+                                  width: 1,
+                                ),
+                              ),
+                              child: FlutterFlowCountController(
+                                decrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.minus,
+                                  color: enabled
+                                      ? Color(0xDD000000)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                incrementIconBuilder: (enabled) => FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: enabled
+                                      ? Color(0xFFEF6910)
+                                      : Color(0xFFEEEEEE),
+                                  size: 20,
+                                ),
+                                countBuilder: (count) => Text(
+                                  count.toString(),
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                count: countControllerValue3 ??= 0,
+                                updateCount: (count) => setState(
+                                    () => countControllerValue3 = count),
+                                stepSize: 1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'START',
+                      options: FFButtonOptions(
+                        width: 120,
+                        height: 60,
+                        color: Color(0xFF7A6854),
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 1,
+                  decoration: BoxDecoration(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 10,
+                                color: Color(0x15000000),
+                                offset: Offset(0, 15),
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        context.pushNamed('HomeScreen');
+                                      },
+                                      child: Image.asset(
+                                        'assets/images/bfy6z_7.png',
+                                        width: 180,
+                                        height: 25,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 5, 0, 0),
+                                  child: LinearPercentIndicator(
+                                    percent: 0.4,
+                                    width: MediaQuery.of(context).size.width,
+                                    lineHeight: 5,
+                                    animation: true,
+                                    progressColor: Color(0xFFEF6910),
+                                    backgroundColor: Color(0x22000000),
+                                    padding: EdgeInsets.zero,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                        child: Container(
+                          width: double.infinity,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    context.pop();
+                                  },
+                                  text: 'DONE',
+                                  options: FFButtonOptions(
+                                    width: 140,
+                                    height: 60,
+                                    color: Color(0xFFEF6910),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

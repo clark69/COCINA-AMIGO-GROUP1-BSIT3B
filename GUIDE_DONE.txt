@@ -1,0 +1,278 @@
+import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+
+class GuideDoneWidget extends StatefulWidget {
+  const GuideDoneWidget({Key? key}) : super(key: key);
+
+  @override
+  _GuideDoneWidgetState createState() => _GuideDoneWidgetState();
+}
+
+class _GuideDoneWidgetState extends State<GuideDoneWidget> {
+  double? ratingBarValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 1,
+              decoration: BoxDecoration(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/34rbv_6.png',
+                    width: 130,
+                    height: 130,
+                    fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                    child: Text(
+                      'bon appétit',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Poppins',
+                            color: Color(0xFFEF6910),
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(50, 0, 50, 15),
+                    child: Text(
+                      'You\'re done cooking. Enjoy your meal!',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'MADE Tommy',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w300,
+                            useGoogleFonts: false,
+                          ),
+                    ),
+                  ),
+                  Divider(
+                    thickness: 1,
+                    indent: 35,
+                    endIndent: 35,
+                    color: Color(0xFFFFA062),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
+                    child: Text(
+                      'RATE THIS RECIPE',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Poppins',
+                            color: Color(0xFF1C1C1C),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                  RatingBar.builder(
+                    onRatingUpdate: (newValue) =>
+                        setState(() => ratingBarValue = newValue),
+                    itemBuilder: (context, index) => Icon(
+                      Icons.star_rounded,
+                      color: Color(0xFFEF6910),
+                    ),
+                    direction: Axis.horizontal,
+                    initialRating: ratingBarValue ??= 3,
+                    unratedColor: Color(0xFF9E9E9E),
+                    itemCount: 5,
+                    itemSize: 30,
+                    glowColor: Color(0xFFEF6910),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 10,
+                          color: Color(0x15000000),
+                          offset: Offset(0, 15),
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/bfy6z_7.png',
+                                width: 180,
+                                height: 25,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            child: LinearPercentIndicator(
+                              percent: 0.4,
+                              width: MediaQuery.of(context).size.width,
+                              lineHeight: 5,
+                              animation: true,
+                              progressColor: Color(0xFFEF6910),
+                              backgroundColor: Color(0x22000000),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                  child: Container(
+                    width: double.infinity,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            fillColor: Color(0x12000000),
+                            icon: Icon(
+                              Icons.replay,
+                              color: Color(0xFFEF6910),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              context.pushNamed(
+                                'GUIDE_STEP1',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.leftToRight,
+                                  ),
+                                },
+                              );
+                            },
+                          ),
+                          FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(
+                                'RecipeInformation',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.bottomToTop,
+                                  ),
+                                },
+                              );
+                            },
+                            text: 'DONE',
+                            options: FFButtonOptions(
+                              width: 140,
+                              height: 60,
+                              color: Color(0xFFEF6910),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            fillColor: Color(0x17000000),
+                            icon: Icon(
+                              Icons.home_rounded,
+                              color: Color(0xFFEF6910),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              context.pushNamed(
+                                'HomeScreen',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                  ),
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
